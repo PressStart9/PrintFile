@@ -98,6 +98,7 @@ class string {
   char operator[](size_t index) const { return buffer_->str_[index]; }
   char& operator[](size_t index) {
     if (buffer_->share_count_ != 1) {
+      --buffer_->share_count_;
       buffer_ = new buffer(*buffer_);
     }
     return buffer_->str_[index];
